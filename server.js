@@ -56,9 +56,9 @@ io.on("connection", (socket) => {
   });
 
   // human sends a message to chatgpt
-  socket.on("send-message", ({ roomId, message }) => {
+  socket.on("send-message", ({ roomId, message, reasoning }) => {
     console.log("message sent from human, roomId:", roomId);
-    socket.to(roomId).emit("receive-message", message);
+    socket.to(roomId).emit("receive-message", { message, reasoning });
   });
 
   // chatgpt replies to the message sent by human
